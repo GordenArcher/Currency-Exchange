@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Currency Convertor || G-KANAD</title>
+</head>
+<body>
+    <div class="app">
+        <div class="__root__app__">
+            <div class="container">
+                <div class="currency">
+                    <div class="header">
+                        <nav>
+                            <div class="nav_header">
+                                <h3>Currency Convertor</h3>
+                            </div>
+
+                            <div class="links">
+                                <ul>
+                                    <li class="id">
+                                        <a href="#!">
+                                            PUIT/22210055
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="socials">
+                                            <div class="qwerty github">
+                                                <button>
+                                                    <a href="https://github.com/GordenArcher" target="_blank" aria-label="icon">
+                                                        <i>
+                                                            <box-icon name='github' type='logo' color='#0000ff' ></box-icon>
+                                                        </i>
+                                                    </a>
+                                                </button>
+                                            </div>
+                                            <div class="qwerty linkdin">
+                                                <button>
+                                                    <a href="https://linkedin.com/feed/GordenArcher" target="_blank" aria-label="icon">
+                                                        <i>
+                                                            <box-icon type='logo' name='linkedin' color='#0000ff' ></box-icon>
+                                                        </i>
+                                                    </a>
+                                                </button>
+                                            </div>
+                                            <div class="qwerty instagram">
+                                                <button>
+                                                    <a href="https://instagram.com/iam_sk_offence" target="_blank" aria-label="icon">
+                                                        <i>
+                                                            <box-icon type='logo' name='instagram' color='#0000ff' ></box-icon>
+                                                        </i>
+                                                    </a>
+                                                </button>
+                                            </div>
+                                            <div class="qwerty twitter">
+                                                <button>
+                                                    <a href="https:" aria-label="icon" target="_blank">
+                                                        <i>
+                                                            <box-icon type='logo' name='twitter' color='#0000ff' ></box-icon>
+                                                        </i>
+                                                    </a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div>
+                                            <div class="time_display">
+                                                <span class="hours"></span>
+                                                <span>:</span>
+                                                <span class="minutes"></span>
+                                                <span>:</span>
+                                                <span class="seconds"></span>
+                                                <span class="ampm"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+
+                    <div class="main_container">
+                        <div class="ccc">
+                            <div class="area__">
+                                <div class="display_area">
+                                    <input type="text" id="display" readonly aria-details="display area">
+                                </div>
+
+                                <form>
+                                    <div class="other_area">
+                                        <div class="mhtttt">
+                                            <div class="curr_select">
+                                                <div class="currency_select_from flex">
+                                                    <select name="currency-selector_from" id="select_currency_from">
+                                                        <option selected selected value="">--- Please select Currency ---</option>
+                                                        <option value="CAD">Canadian Dollar (CAD)</option>
+                                                        <option value="USD">US Dollar (USD)</option>
+                                                        <option value="AUD">Australian Dollar (AUD)</option>
+                                                        <option value="BGN">Bulgarian Lev (BGN)</option>
+                                                        <option value="CHF">Swiss Franc (CHF)</option>
+                                                        <option value="CNY">Chinese Yuan (CNY)</option>
+                                                        <option value="CZK">Czech Koruna (CZK)</option>
+                                                        <option value="EUR">Euro (EUR)</option>
+                                                        <option value="GBP">British Pound (GBP)</option>
+                                                        <option value="HKD">Hong Kong Dollar (HKD)</option>
+                                                        <option value="HRK">Croatian Kuna (HRK)</option>
+                                                        <option value="HUF">Hungarian Forint (HUF)</option>
+                                                        <option value="PHP">Philippine Peso (PHP)</option>
+                                                        <option value="JPY">Japanese Yen (JPY)</option>
+                                                    
+                                                    </select>
+
+                                                    <p class="selected_fom"></p>
+                                                </div>
+    
+                                                <div class="currency_select_to flex">
+                                                    <select name="currency-selector_to" id="select_currency_to">
+                                                        <option selected selected value="">--- Please select Currency ---</option>
+                                                        <option value="CAD">Canadian Dollar (CAD)</option>
+                                                        <option value="USD">US Dollar (USD)</option>
+                                                        <option value="AUD">Australian Dollar (AUD)</option>
+                                                        <option value="BGN">Bulgarian Lev (BGN)</option>
+                                                        <option value="CHF">Swiss Franc (CHF)</option>
+                                                        <option value="CNY">Chinese Yuan (CNY)</option>
+                                                        <option value="CZK">Czech Koruna (CZK)</option>
+                                                        <option value="EUR">Euro (EUR)</option>
+                                                        <option value="GBP">British Pound (GBP)</option>
+                                                        <option value="HKD">Hong Kong Dollar (HKD)</option>
+                                                        <option value="HRK">Croatian Kuna (HRK)</option>
+                                                        <option value="HUF">Hungarian Forint (HUF)</option>
+                                                        <option value="PHP">Philippine Peso (PHP)</option>
+                                                        <option value="JPY">Japanese Yen (JPY)</option>
+                                                    
+                                                    </select>
+
+                                                    <p class="selected_to"></p>
+                                                </div>
+                                            </div>
+    
+                                            <div class="amount_eneterd">
+                                                <div class="amount">
+                                                    <input type="number" name="number_entered" id="number_entered" placeholder="Enter amount to convert">
+                                                </div>
+                                            </div>
+    
+    
+                                            <div class="buttons">
+                                                <div class="container_buttons">
+                                                    <div class="reset">
+                                                        <button type="reset">Reset</button>
+                                                    </div>
+                                                    <div class="convert">
+                                                        <button type="submit" id="convert">Convert</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="history">
+                            <div class="view_history">
+                                <div class="history_head">
+                                    <h2>History</h2>
+                                </div>
+                                <div class="history_table">
+                                    <table bgcolor="black" width="500">
+                                        <thead>
+                                            <tr align="left" bgcolor="gray">
+                                                <td width="100">Number</td>
+                                                <td width="100">Currency Converted from</td>
+                                                <td width="100">Currency Converted to</td>
+                                                <td width="100">Amount</td>
+                                                <td width="100">Converted Amount</td>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody class="table_data_display" align="left" bgcolor="lightgray">
+                                            <tr>
+                                                <td>1</td>
+                                                <td>USD</td>
+                                                <td>EURO</td>
+                                                <td>21</td>
+                                                <td>31</td>
+                                            </tr>                                            <tr>
+                                                <td>1</td>
+                                                <td>USD</td>
+                                                <td>EURO</td>
+                                                <td>21</td>
+                                                <td>31</td>
+                                            </tr>                                            <tr>
+                                                <td>1</td>
+                                                <td>USD</td>
+                                                <td>EURO</td>
+                                                <td>21</td>
+                                                <td>31</td>
+                                            </tr>                                            <tr>
+                                                <td>1</td>
+                                                <td>USD</td>
+                                                <td>EURO</td>
+                                                <td>21</td>
+                                                <td>31</td>
+                                            </tr>                                            <tr>
+                                                <td>1</td>
+                                                <td>USD</td>
+                                                <td>EURO</td>
+                                                <td>21</td>
+                                                <td>31</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="graph_represent">
+                    <canvas id="exchangeChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="JS/index.js"></script>
+</body>
+</html>
