@@ -8,7 +8,7 @@ a{
     text-decoration: none;
 }
 
-.app, .container, .currency, .header, .main_container, .area__, .display_area, .other_area, .mhtttt, .curr_select, .amount_eneterd, .buttons, .history, .view_history, .history_head, .history_table, .__root__app__, .chart-container{
+.app, .container, .currency, .header, .main_container, .area__, .display_area, .other_area, .mhtttt, .curr_select, .amount_eneterd, .buttons, .view_history, .history_head, .__root__app__, .chart-container{
     width: 100%;
     height: 100%;
     position: relative;
@@ -20,7 +20,15 @@ a{
     gap: 30px;
 }
 
-.currency, .area__, .view_history{
+.validate{
+    color: red;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.currency, .area__{
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -61,7 +69,7 @@ a{
     gap: 10px;
 }
 
-.qwerty button{
+.qwerty button, .uhy{
     width: 50px;
     height: 50px;
     background: rgb(216, 216, 223);
@@ -71,8 +79,37 @@ a{
     cursor: pointer;
 }
 
-.qwerty button:hover{
+.qwerty button:hover, .uhy:hover{
     transform: translateY(-6px);
+}
+
+.uhy:hover{
+    background: rgb(216, 216, 223);
+}
+
+.uhy{
+    background: none;
+    border: 1px solid #ccc;
+}
+
+.tooltip{
+    position: absolute;
+    margin-top: -88px;
+    margin-left: -70px;
+    padding: 6px;
+    border-radius: 6px;
+    background: #000000;
+    color: #fff;
+    opacity: 0;
+    transition: all .5s ease;
+}
+
+.uhy:hover ~ .tooltip{
+    opacity: 1;
+}
+
+.uhy box-icon{
+    font-size: 2rem;
 }
 
 .time_display span{
@@ -81,7 +118,7 @@ a{
 }
 
 .ccc, .history_table table{
-    width: 50%;
+    width: 60%;
     height: 100%;
     padding: 20px;
     border: 1px solid #ccc;
@@ -154,14 +191,53 @@ a{
     color: #fff;
 }
 
-.history_head{
+.history_head, .chart-container h1{
     font-size: 2.4rem;
     color: blue;
     text-align: center;
 }
 
+.history{
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    z-index: 99;
+    background: #ffffff;
+    box-shadow: 0 0 0 2px #ccc;
+    border-radius: 7px;
+    transition: all .4s ease;
+    transform: translateY(-200%);
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+.active{
+    transform: translateY(0);
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.history .view_history{
+    top: 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 30px;
+    overflow-y: scroll;
+}
+
+.history_table{
+    margin-top: -400px;
+}
+
 .history_table table{
     width: 1000px;
+    background: #fff;
+    border: 1px solid #ccc;
+    overflow-y: scroll;
 }
 
 .history_table table thead, .history_table table tbody{
@@ -177,11 +253,21 @@ a{
 .history_table table thead tr td, .history_table table tbody tr td{
     height: 100%;
     padding: 15px 5px;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.history_table table tbody tr td{
+    height: 100%;
+    padding: 15px 5px;
+    font-size: 1.3rem;
+    font-weight: 200;
 }
 
 .graph_represent{
-    width: 80%;
+    width: 90%;
     height: 100%;
+    padding: 20px;
     margin:50px auto;
     background: #fff;
     border-radius: 6px;

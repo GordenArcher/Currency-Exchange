@@ -64,6 +64,7 @@ const select_currency_to = document.getElementById('select_currency_to');
 const display = document.getElementById('display');
 const select_from = document.querySelector('.selected_fom')
 const select_to = document.querySelector('.selected_to')
+const validating = document.getElementById('validating')
 
 
 select_currency_from.addEventListener('change', function() {
@@ -81,13 +82,19 @@ select_currency_to.addEventListener('change', function() {
 convert.addEventListener('click', (event) => {
     event.preventDefault();
 
+    convertCurrency()
+    
+});
+
+function convertCurrency() {
     const fromCurrency = select_currency_from.value;
     const toCurrency = select_currency_to.value;
-    const amount = number_entered.value;
+    const amount = parseFloat(number_entered.value);
 
-    console.log(amount)
-    console.log(toCurrency)
-    console.log(fromCurrency)
+    if (isNaN(amount)) {
+        display.value = '';
+        return;
+    }
 
     fetch(`https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_uhgFzszHJzYxUJG6l6RhRnWtzxixYLFHnIhAzkkS`)
         .then((response) => {
@@ -97,27 +104,35 @@ convert.addEventListener('click', (event) => {
             return response.json();
         })
         .then((data) => {
-            console.log('API Response:', data);
-            const rates = data.data; 
-            const conversionRate = rates[toCurrency]; 
-            
+            const rates = data.data;
+            const conversionRate = rates[toCurrency];
+
             if (conversionRate) {
-                const convertedAmount = amount * conversionRate;
-                display.value = `${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`;
-                updateChart(fromCurrency, toCurrency, amount, convertedAmount)
+                if (amount < 0) {
+                    validating.innerHTML = 'Enter a positive number';
+                    setTimeout(() => {
+                        validating.innerHTML = '';
+                    }, 4000);
+                    display.value = '';
+                } else {
+                    const convertedAmount = amount * conversionRate;
+                    display.value = `${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${toCurrency}`;
+                    updateChart(fromCurrency, toCurrency, amount, convertedAmount);
+
+                    History(fromCurrency, toCurrency, amount, convertedAmount);
+                }
             } else {
-                display.value = `Conversion rate not available for ${toCurrency}`;
+                validating.textContent = `Conversion rate not available for ${toCurrency}`;
             }
         })
         .catch((error) => {
             console.error('Error fetching data:', error);
-            display.value = `Failed to fetch exchange rates`;
+            validating.textContent = `Failed to fetch exchange rates`
         });
-    
-});
+}
 
 
-function updateChart(fromCurrency, toCurrency, amount, convertedAmount) {
+function updateChart(fromCurrency, toCurrency, amount) {
     const graph = document.getElementById('exchangeChart').getContext('2d');
 
     fetch(`https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_uhgFzszHJzYxUJG6l6RhRnWtzxixYLFHnIhAzkkS`)
@@ -134,6 +149,10 @@ function updateChart(fromCurrency, toCurrency, amount, convertedAmount) {
 
             const fromIndex = labels.indexOf(fromCurrency);
             const toIndex = labels.indexOf(toCurrency);
+
+            if (fromIndex === -1 || toIndex === -1) {
+                throw new Error('Currency not found in API response');
+            }
 
             const exchangeRates = conversionRates.map(rate => (amount * rate).toFixed(2));
 
@@ -156,13 +175,56 @@ function updateChart(fromCurrency, toCurrency, amount, convertedAmount) {
                 }
             };
 
-            const exchangeChart = new Chart(graph, {
+            const exchangeChart = graph.data ? graph : new Chart(graph, {
                 type: 'line',
                 data: chartData,
                 options: chartOptions
             });
+
+            exchangeChart.data = chartData;
+            exchangeChart.options = chartOptions;
+            exchangeChart.update();
         })
         .catch(error => {
             console.error('Error fetching data for chart:', error);
         });
+}
+
+
+let NumberRow = 0;
+
+function History(fromCurrency, toCurrency, amount, convertedAmount) {
+    NumberRow++;
+
+    const tableBody = document.getElementById('table_data_display');
+
+    const newRow = document.createElement('tr');
+
+    const tdNumber = document.createElement('td');
+    tdNumber.textContent = NumberRow;
+    newRow.appendChild(tdNumber);
+
+    const tdFromCurrency = document.createElement('td');
+    tdFromCurrency.textContent = fromCurrency;
+    newRow.appendChild(tdFromCurrency);
+
+    const tdToCurrency = document.createElement('td');
+    tdToCurrency.textContent = toCurrency;
+    newRow.appendChild(tdToCurrency);
+
+    const tdAmount = document.createElement('td');
+    tdAmount.textContent = amount;
+    newRow.appendChild(tdAmount);
+
+    const tdConvertedAmount = document.createElement('td');
+    tdConvertedAmount.textContent = convertedAmount.toFixed(2);
+    newRow.appendChild(tdConvertedAmount);
+
+    tableBody.appendChild(newRow);
+}
+
+const handleHistoryActive = () => {
+    let history = document.querySelector('.history')
+
+    history.classList.toggle('active')
 }

@@ -7,6 +7,17 @@
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Currency Convertor || G-KANAD</title>
+
+    <style>
+        .table_data_display tr {
+            border-bottom: 1px solid #b00b0b;
+        }
+        
+        .table_data_display td {
+            padding: 15px 5px;
+        }
+    </style>
+    
 </head>
 <body>
     <div class="app">
@@ -48,7 +59,7 @@
                                             </div>
                                             <div class="qwerty instagram">
                                                 <button>
-                                                    <a href="https://instagram.com/iam_sk_offence" target="_blank" aria-label="icon">
+                                                    <a href="https://instagram.com/iam_offence_sk" target="_blank" aria-label="icon">
                                                         <i>
                                                             <box-icon type='logo' name='instagram' color='#0000ff' ></box-icon>
                                                         </i>
@@ -57,7 +68,7 @@
                                             </div>
                                             <div class="qwerty twitter">
                                                 <button>
-                                                    <a href="https:" aria-label="icon" target="_blank">
+                                                    <a href="https://x.com/khoffi_offence" aria-label="icon" target="_blank">
                                                         <i>
                                                             <box-icon type='logo' name='twitter' color='#0000ff' ></box-icon>
                                                         </i>
@@ -79,6 +90,12 @@
                                             </div>
                                         </div>
                                     </li>
+                                    <li>
+                                        <button class="uhy" onclick="handleHistoryActive()">
+                                            <box-icon name='menu-alt-right' color="#0000ff"></box-icon>
+                                        </button>
+                                        <p class="tooltip">Click to view history</p>
+                                    </li>
                                 </ul>
                             </div>
                         </nav>
@@ -87,11 +104,12 @@
                     <div class="main_container">
                         <div class="ccc">
                             <div class="area__">
+                                <div class="validate" id="validating"></div>
                                 <div class="display_area">
                                     <input type="text" id="display" readonly aria-details="display area">
                                 </div>
 
-                                <form>
+                                <form method="post">
                                     <div class="other_area">
                                         <div class="mhtttt">
                                             <div class="curr_select">
@@ -144,7 +162,11 @@
     
                                             <div class="amount_eneterd">
                                                 <div class="amount">
-                                                    <input type="number" name="number_entered" id="number_entered" placeholder="Enter amount to convert">
+                                                    <input type="number" 
+                                                    name="number_entered" 
+                                                    id="number_entered" 
+                                                    placeholder="Enter amount to convert"
+                                                    >
                                                 </div>
                                             </div>
     
@@ -171,9 +193,9 @@
                                     <h2>History</h2>
                                 </div>
                                 <div class="history_table">
-                                    <table bgcolor="black" width="500">
+                                    <table width="500">
                                         <thead>
-                                            <tr align="left" bgcolor="gray">
+                                            <tr align="left">
                                                 <td width="100">Number</td>
                                                 <td width="100">Currency Converted from</td>
                                                 <td width="100">Currency Converted to</td>
@@ -182,38 +204,8 @@
                                             </tr>
                                         </thead>
 
-                                        <tbody class="table_data_display" align="left" bgcolor="lightgray">
-                                            <tr>
-                                                <td>1</td>
-                                                <td>USD</td>
-                                                <td>EURO</td>
-                                                <td>21</td>
-                                                <td>31</td>
-                                            </tr>                                            <tr>
-                                                <td>1</td>
-                                                <td>USD</td>
-                                                <td>EURO</td>
-                                                <td>21</td>
-                                                <td>31</td>
-                                            </tr>                                            <tr>
-                                                <td>1</td>
-                                                <td>USD</td>
-                                                <td>EURO</td>
-                                                <td>21</td>
-                                                <td>31</td>
-                                            </tr>                                            <tr>
-                                                <td>1</td>
-                                                <td>USD</td>
-                                                <td>EURO</td>
-                                                <td>21</td>
-                                                <td>31</td>
-                                            </tr>                                            <tr>
-                                                <td>1</td>
-                                                <td>USD</td>
-                                                <td>EURO</td>
-                                                <td>21</td>
-                                                <td>31</td>
-                                            </tr>
+                                        <tbody class="table_data_display" id="table_data_display" align="left">
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -224,6 +216,7 @@
             </div>
 
             <div class="chart-container">
+                <h1>Chart</h1>
                 <div class="graph_represent">
                     <canvas id="exchangeChart"></canvas>
                 </div>
